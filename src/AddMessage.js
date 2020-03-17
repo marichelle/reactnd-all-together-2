@@ -26,7 +26,7 @@ class AddMessage extends Component {
 
   // If the user did not type anything, he/she should not be allowed to submit.
   isDisabled = () => {
-    return false;
+    return this.state.message.text.trim() === '';
   };
 
   onInputChange = e => {

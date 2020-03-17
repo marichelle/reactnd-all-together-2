@@ -4,9 +4,10 @@ import './App.css';
 
 import ChatWindow from './ChatWindow';
 
+const users = [{ username: 'Maya' }, { username: 'Romy' }];
+
 class App extends Component {
   state = {
-    users: [{ username: 'Maya' }, { username: 'Romy' }],
     messages: [
       { username: 'Maya', text: 'Hi, Romy!' },
       { username: 'Maya', text: 'How are you?' },
@@ -21,7 +22,7 @@ class App extends Component {
   };
 
   render() {
-    const { messages, users } = this.state;
+    const { messages } = this.state;
 
     return (
       <div className="App">

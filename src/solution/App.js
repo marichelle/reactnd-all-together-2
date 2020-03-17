@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import logo from '../logo.svg';
+import '../App.css';
 import ChatWindow from './ChatWindow';
+
+const users = [{ username: 'Amy' }, { username: 'Jon' }];
 
 class App extends Component {
   state = {
-    users: [{ username: 'Maya' }, { username: 'Romy' }],
-    messages: [
-      { username: 'Maya', text: 'Hi, Romy!' },
-      { username: 'Maya', text: 'How are you?' },
-      { username: 'Romy', text: 'Hi, Maya! Good, you?' }
-    ]
+    messages: [] //will hold this --> {usermame: 'Amy', text: 'a'}
   };
-
-  handleAddMessage = message => {
-    this.setState(prevState => ({
-      messages: [...prevState.messages, message]
+  onMessage = (username, message) => {
+    const newMessage = {
+      ['username']: username,
+      ['text']: message
+    };
+    this.setState(currState => ({
+      messages: currState.messages.concat([newMessage])
     }));
   };
-
   render() {
-    const { messages, users } = this.state;
+    const { messages } = this.state;
 
     return (
       <div className="App">
@@ -33,9 +31,9 @@ class App extends Component {
           {users.map(user => (
             <ChatWindow
               key={user.username}
-              onAddMessage={this.handleAddMessage}
-              messages={messages}
               user={user}
+              messages={messages}
+              onMessage={this.onMessage}
             />
           ))}
         </div>
